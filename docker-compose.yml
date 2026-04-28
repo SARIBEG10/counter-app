@@ -1,0 +1,32 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    #networks:
+     # - mynet
+    links:
+      - "redis:RD"
+#    volumes:
+ #     - "myvol1"
+  redis:
+    image: "redis:alpine"
+    #networks:
+     # - mynet
+networks:
+  #counter-net:
+  #      driver: bridge
+  default:
+    external: true
+    name: mynet
+  mynet:
+    external: true
+    name: mynet
+  over-net:
+    driver: overlay
+    attachable: true
+
+
+
+#volumes:
+ #  name: myvol1
